@@ -1,9 +1,13 @@
 name: release
 
 on:
-  push:
-    tags:
-      - "*"
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
+        default: 'v0.0.1'
 
 jobs:
   changelog:
@@ -67,24 +71,34 @@ jobs:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      - name: Publish npm
-        run: |
-          cd alist-web
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-          pnpm publish --no-git-checks
-          cd ..
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish npm
+      #   run: |
+      #     cd alist-web
+      #     echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+      #     pnpm publish --no-git-checks
+      #     cd ..
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Upload dist files
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: main
-          directory: web-dist
-          repository: alist-org/web-dist
+      # - name: Upload dist files
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.MY_TOKEN }}
+      #     branch: main
+      #     directory: web-dist
+      #     repository: alist-org/web-dist
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: compress/*
+      
+      - name: Upload binary to GitHub Release
+        uses: svenstaro/upload-release-action@v2
         with:
-          files: compress/*
+          repo_token: ${{ secrets.MY_TOKEN }}
+          file: compress/*
+          file_glob: true
+          overwrite: true
+          tag: "refs/tags/${{ github.event.inputs.tag }}"
+  

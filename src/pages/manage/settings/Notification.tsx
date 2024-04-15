@@ -431,8 +431,6 @@ const NotifySettings = (props: NotifySettingsProps) => {
               </SelectListbox>
             </SelectContent>
           </Select>
-
-          <form name="notifier" id="notifier">
           {fields.map((x) => (
                   <Show
                       when={x.items}
@@ -462,63 +460,6 @@ const NotifySettings = (props: NotifySettingsProps) => {
                   </Show>
 
           ))}
-           </form>
-
-
-
-        
-
-
-
-
-        {/* <Index each={Notification.notificationModeMap[settings[1].value]}>
-          {(item, _) => (
-            <Item
-              {...item()}
-              onChange={(val) => {
-                setSettings((i) => item().key === i.key, "value", val)
-              }}
-              onDelete={async () => {
-                setLoading(true)
-                const resp: EmptyResp = await r.post(
-                  `/admin/setting/delete?key=${item().key}`,
-                )
-                setLoading(false)
-                handleResp(resp, () => {
-                  notify.success(t("global.delete_success"))
-                  refresh()
-                })
-              }}
-            />
-          )}
-        </Index> */}
-
-
-        {/* <Index each={settings}>
-          {(item, _) => (
-            <Item
-              {...item()}
-              onChange={(val) => {
-                setSettings((i) => item().key === i.key, "value", val)
-              }}
-              onDelete={async () => {
-                setLoading(true)
-                const resp: EmptyResp = await r.post(
-                  `/admin/setting/delete?key=${item().key}`,
-                )
-                setLoading(false)
-                handleResp(resp, () => {
-                  notify.success(t("global.delete_success"))
-                  refresh()
-                })
-              }}
-            />
-          )}
-        </Index> */}
-
-
-
-
       </ResponsiveGrid>
       <HStack spacing="$2">
         <Button
