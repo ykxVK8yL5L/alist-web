@@ -38,6 +38,15 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           submodules: recursive
+      
+      - name: Checkout dist repo
+        uses: actions/checkout@v4
+        with:
+          repository: alist-org/web-dist
+          ref: main
+          path: web-dist
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Build
         run: |
