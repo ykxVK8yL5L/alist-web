@@ -17,7 +17,7 @@ import { FiLogIn } from "solid-icons/fi"
 import { SiMetabase } from "solid-icons/si"
 import { CgDatabase } from "solid-icons/cg"
 import { OcWorkflow2 } from "solid-icons/oc"
-import { IoCopy, IoHome, IoMagnetOutline } from "solid-icons/io"
+import { IoCopy, IoHome, IoMagnetOutline,IoNotificationsOutline } from "solid-icons/io"
 import { Component, lazy } from "solid-js"
 import { Group, UserRole } from "~/types"
 import { FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
@@ -28,6 +28,7 @@ export type SideMenuItem = SideMenuItemProps & {
 }
 
 const CommonSettings = lazy(() => import("./settings/Common"))
+const NotifySettings = lazy(() => import("./settings/Notification"))
 
 export const side_menu_items: SideMenuItem[] = [
   {
@@ -71,6 +72,12 @@ export const side_menu_items: SideMenuItem[] = [
         icon: FiLogIn,
         to: "/@manage/settings/sso",
         component: () => <CommonSettings group={Group.SSO} />,
+      },
+      {
+        title: "manage.sidemenu.notification",
+        icon: IoNotificationsOutline,
+        to: "/@manage/settings/notification",
+        component: () => <NotifySettings group={Group.NOTIFICATION} />,
       },
       {
         title: "manage.sidemenu.ldap",
