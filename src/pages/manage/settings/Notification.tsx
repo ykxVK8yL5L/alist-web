@@ -6,6 +6,7 @@ import {
   Button, 
   Input,
   Text,
+  Textarea,
   Badge,
   HStack, 
   VStack ,
@@ -435,7 +436,7 @@ const NotifySettings = (props: NotifySettingsProps) => {
                   <Show
                       when={x.items}
                       fallback={() =>  {
-                            return <><Text mb="$2">{x.label}<Show when={x.required}><Badge colorScheme="danger">*</Badge></Show></Text><Input value={notifyInfo[x.label]} onChange={(e) => updateForm(x.label,e.currentTarget.value)} name={x.label} placeholder={x.placeholder ? x.placeholder : x.tip}/></>
+                            return <><Text mb="$2">{x.label}<Show when={x.required}><Badge colorScheme="danger">*</Badge></Show></Text><Textarea value={notifyInfo[x.label]} onInput={(e) => updateForm(x.label,e.currentTarget.value)} name={x.label} placeholder={x.placeholder ? x.placeholder : x.tip}/></>
                       }}
                     >
                       

@@ -359,6 +359,11 @@
     "refresh_token": "刷新令牌",
     "root_folder_path": "根文件夹路径"
   },
+  "FastWebdav": {
+    "address": "地址",
+    "password": "API Key",
+    "root_folder_path": "根文件夹路径"
+  },
   "FTP": {
     "address": "地址",
     "password": "密码",
@@ -825,6 +830,9 @@
     "Crypt": {},
     "Doge": {},
     "Dropbox": {},
+    "FastWebdav": {
+      "alert": "只支持读文件不能进行其它操作,如:复制,移动,上传等"
+    },
     "FTP": {},
     "FeijiPan": {},
     "GoogleDrive": {},
@@ -886,6 +894,7 @@
     "Crypt": "Crypt",
     "Doge": "多吉云",
     "Dropbox": "Dropbox",
+    "FastWebdav": "FastWebdav",
     "FTP": "FTP",
     "FeijiPan": "飞机盘",
     "GoogleDrive": "谷歌云盘",
